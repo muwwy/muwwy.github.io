@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: #2d2c2c;
+        }
+
+        .left-bar {
+            background-color: #222;
+            height: 100vh;
+            width: 15%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -11;
+        }
+
+        .content {
+            margin-left: 15%;
+            margin-top: -24%;
+            padding: 5px;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .glow-on-hover {
+            width: 10%;
+            height: 50px;
+            border: none;
+            outline: none;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:before {
+            content: '';
+            background: linear-gradient(45deg,
+            #b76767,
+            #c5925f,
+            #c0be5b,
+            #80c265,
+            #7fdacd,
+            #4e64c9,
+            #915ec5,
+            #c55cb0,
+            #d05050);
+            position: absolute;
+            top: -2px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing 20s linear infinite;
+            opacity: 1;
+            transition: opacity .3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .glow-on-hover:active {
+            color: #d99190
+        }
+
+        .glow-on-hover:hover {
+            color: #d99190;
+        }
+
+        .glow-on-hover:hover:before {
+            opacity: 1;
+        }
+
+        .glow-on-hover:after {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .sphere {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #d99190;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        .bgr {
+            display: inline-flex;
+            flex-direction: column;
+            width: 100%;
+            height: auto;
+        }
+
+        .bgr > * {
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(230vh);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="bgr">
+    <button onclick="openLink('https://vk.com/david715')" class="glow-on-hover">VK
+    </button>
+
+    <button onclick="openLink('https://t.me/muwwy715')" class="glow-on-hover">
+        Telegram
+    </button>
+
+    <button onclick="openLink('https://vk.com/javanovelengine')" class="glow-on-hover">JNE
+    </button>
+
+    <button onclick="openLink('https://vk.com/muwwy_orders')" class="glow-on-hover">
+        MINECRAFT
+    </button>
+</div>
+<div class="left-bar"></div>
+
+<div class="content">
+    <img src="images/profile.png" alt="Профиль">
+</div>
+
+<script>
+    function openLink(link) {
+        window.open(link, '_blank');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const numberOfSpheres = 30;
+
+        for (let i = 0; i < numberOfSpheres; i++) {
+            createSphere();
+        }
+
+        function createSphere() {
+            const sphere = document.createElement('div');
+            sphere.className = 'sphere';
+
+            sphere.style.backgroundColor = '#d99190';
+            sphere.style.opacity = '0.05'
+
+            const randomSpeed = (Math.random() * 5 + 2).toFixed(1);
+            sphere.style.animationDuration = `${randomSpeed}s`;
+
+            const randomPosition = Math.random() * window.innerWidth;
+            sphere.style.left = `${randomPosition}px`;
+            sphere.style.top = `${0}px`;
+
+            document.body.appendChild(sphere);
+        }
+    });
+</script>
+
+</body>
+</html>
